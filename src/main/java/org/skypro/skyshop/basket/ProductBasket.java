@@ -11,10 +11,10 @@ public class ProductBasket {
             if (products[i] == null) {
                 products[i] = product;
                 System.out.println("Добавлен " + product.getName());
-                break;
+                return;
             } else if (products[products.length - 1] != null) {
                 System.out.println("Невозможно добавить продукт");
-                break;
+                return;
             }
         }
     }
