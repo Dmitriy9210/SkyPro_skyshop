@@ -35,6 +35,5 @@ public class App {
 
         System.out.println( productBasket2.getProductPrice());
         System.out.println(productBasket2.isProductInBasket("Сметана"));
-
     }
 }

@@ -4,16 +4,18 @@ import org.skypro.skyshop.product.Product;
 
 public class ProductBasket {
 
-    private int i = 0;
-    private Product[] products = new Product[5];
+    private final Product[] products = new Product[5];
 
     public void addProduct(Product product) {
-        if (i < 5) {
-            this.products[i] = product;
-            System.out.println("Добавлен " + product.getName());
-            i++;
-        } else {
-            System.out.println("Невозможно добавить продукт");
+        for (int i = 0; i < products.length; i++) {
+            if (products[i] == null) {
+                products[i] = product;
+                System.out.println("Добавлен " + product.getName());
+                break;
+            } else if (products[products.length - 1] != null) {
+                System.out.println("Невозможно добавить продукт");
+                break;
+            }
         }
     }
 
