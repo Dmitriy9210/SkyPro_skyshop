@@ -12,12 +12,11 @@ public class ProductBasket {
                 products[i] = product;
                 System.out.println("Добавлен " + product.getName());
                 return;
-            } else if (products[products.length - 1] != null) {
-                System.out.println("Невозможно добавить продукт");
-                return;
             }
         }
+        System.out.println("Невозможно добавить продукт");
     }
+
 
     public int getProductPrice() {
         int sum = 0;
