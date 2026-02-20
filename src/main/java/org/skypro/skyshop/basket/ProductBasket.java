@@ -30,8 +30,12 @@ public class ProductBasket {
 
     public void getAllProducts() {
         int j = 0;
+        int countEspecial = 0;
         for (Product product : this.products) {
             if (product != null) {
+                if (product.isSpecial()) {
+                    countEspecial++;
+                }
                 System.out.println(product);
                 j++;
             } else if (j == 0) {
@@ -41,7 +45,8 @@ public class ProductBasket {
         }
         int sum = getProductPrice();
         if (sum > 0) {
-            System.out.println(sum);
+            System.out.println("Итого: " + sum);
+            System.out.println("Специальных товаров: " + countEspecial);
         }
     }
 
