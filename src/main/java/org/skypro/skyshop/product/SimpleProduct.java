@@ -22,7 +22,15 @@ public class SimpleProduct extends Product {
     @Override
     public String toString() {
         return getName() + ": " + getPrice();
+    }
 
-        //<имя продукта>: <стоимость>
+    @Override
+    public String searchTerm() {
+        return getName();
+    }
+
+    @Override
+    public String getTypeContent() {
+        return "PRODUCT";
     }
 }

@@ -31,7 +31,15 @@ public class DiscountedProduct extends Product {
     @Override
     public String toString() {
         return getName() + ": " + getPrice() + ", скидка: " + getDiscount() + "%";
+    }
 
-        //<имя продукта со скидкой>: <стоимость> (<скидка>%)
+    @Override
+    public String searchTerm() {
+        return getName();
+    }
+
+    @Override
+    public String getTypeContent() {
+        return "PRODUCT";
     }
 }
