@@ -1,5 +1,6 @@
 import org.skypro.skyshop.article.Article;
 import org.skypro.skyshop.basket.ProductBasket;
+import org.skypro.skyshop.exception.BestResultNotFound;
 import org.skypro.skyshop.product.DiscountedProduct;
 import org.skypro.skyshop.product.FixPriceProduct;
 import org.skypro.skyshop.product.Product;
@@ -45,7 +46,7 @@ public class App {
         productBasket2.clearBasket();
         productBasket2.getAllProducts();
 
-        System.out.println( productBasket2.getProductPrice());
+        System.out.println(productBasket2.getProductPrice());
         System.out.println(productBasket2.isProductInBasket("Сметана"));
 
         System.out.println("_______________________________");
@@ -84,5 +85,23 @@ public class App {
         System.out.println(article2.getStringRepresentation());
         System.out.println(article2.getStringRepresentation());
         System.out.println(Arrays.toString(searchEngine.search("Молоко")));
+
+        System.out.println("_______________________________");
+        System.out.println("Exception");
+        try {
+            Product product7 = new SimpleProduct("Молоко", 0);
+            Product product8 = new DiscountedProduct("", 111, 1000);
+            Product product9 = new FixPriceProduct("   ");
+            Product product10 = new SimpleProduct(null, 33);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+
+        try {
+            System.out.println(searchEngine.getSearchableSearch("о"));
+            System.out.println(searchEngine.getSearchableSearch("оaa"));
+        } catch (BestResultNotFound e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
