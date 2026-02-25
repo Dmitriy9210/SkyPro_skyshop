@@ -97,6 +97,7 @@ public class App {
             System.out.println(e.getMessage());
         }
 
+        System.out.println("_______________________________");
         try {
             System.out.println(searchEngine.getSearchableSearch("о"));
             System.out.println(searchEngine.getSearchableSearch("оaa"));
