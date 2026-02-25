@@ -1,8 +1,12 @@
+import org.skypro.skyshop.article.Article;
 import org.skypro.skyshop.basket.ProductBasket;
 import org.skypro.skyshop.product.DiscountedProduct;
 import org.skypro.skyshop.product.FixPriceProduct;
 import org.skypro.skyshop.product.Product;
 import org.skypro.skyshop.product.SimpleProduct;
+import org.skypro.skyshop.search.SearchEngine;
+
+import java.util.Arrays;
 
 public class App {
 
@@ -43,5 +47,42 @@ public class App {
 
         System.out.println( productBasket2.getProductPrice());
         System.out.println(productBasket2.isProductInBasket("Сметана"));
+
+        System.out.println("_______________________________");
+        System.out.println("Interface");
+
+        Article article1 = new Article("Огурцы", "Огурцы надо есть сразу из банки");
+        Article article2 = new Article("Помидоры", "Выбирай самые красные");
+        Article article3 = new Article("Молоко", "Всегдя кипяти");
+
+        SearchEngine searchEngine = new SearchEngine(10);
+        searchEngine.add(product1);
+        searchEngine.add(product2);
+        searchEngine.add(product3);
+        searchEngine.add(product4);
+        searchEngine.add(product5);
+        searchEngine.add(product6);
+        searchEngine.add(article1);
+        searchEngine.add(article2);
+        searchEngine.add(article3);
+
+        System.out.println(product1.getTypeContent());
+        System.out.println(product2.getTypeContent());
+        System.out.println(product3.getTypeContent());
+        System.out.println(product4.getTypeContent());
+        System.out.println(product5.getTypeContent());
+        System.out.println(article1.getTypeContent());
+        System.out.println(article2.getTypeContent());
+        System.out.println(article2.getTypeContent());
+
+        System.out.println(product1.getStringRepresentation());
+        System.out.println(product2.getStringRepresentation());
+        System.out.println(product3.getStringRepresentation());
+        System.out.println(product4.getStringRepresentation());
+        System.out.println(product5.getStringRepresentation());
+        System.out.println(article1.getStringRepresentation());
+        System.out.println(article2.getStringRepresentation());
+        System.out.println(article2.getStringRepresentation());
+        System.out.println(Arrays.toString(searchEngine.search("Молоко")));
     }
 }
