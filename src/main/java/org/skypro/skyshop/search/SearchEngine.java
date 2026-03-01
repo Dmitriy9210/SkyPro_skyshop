@@ -2,13 +2,13 @@ package org.skypro.skyshop.search;
 
 import org.skypro.skyshop.exception.BestResultNotFound;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class SearchEngine {
 
-    public SearchEngine(int countArrays) {
-        this.searchables = new Searchable[countArrays];
-    }
+    private final List<Searchable> searchables = new LinkedList<>();
 
-    private final Searchable[] searchables;
 
     public Searchable[] search(String text) {
         Searchable[] newSearchables = new Searchable[5];
@@ -26,12 +26,7 @@ public class SearchEngine {
     }
 
     public void add(Searchable searchable) {
-        for (int i = 0; i < searchables.length; i++) {
-            if (searchables[i] == null) {
-                searchables[i] = searchable;
-                break;
-            }
-        }
+        searchables.add(searchable);
     }
 
     public Searchable getSearchableSearch(String search) throws BestResultNotFound {
@@ -60,9 +55,9 @@ public class SearchEngine {
 
             }
         }
-        if (searchable == null){
+        if (searchable == null) {
             throw new BestResultNotFound(search);
-        }else {
+        } else {
             return searchable;
         }
     }
