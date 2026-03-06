@@ -56,7 +56,7 @@ public class App {
         Article article2 = new Article("Помидоры", "Выбирай самые красные");
         Article article3 = new Article("Молоко", "Всегдя кипяти");
 
-        SearchEngine searchEngine = new SearchEngine(10);
+        SearchEngine searchEngine = new SearchEngine();
         searchEngine.add(product1);
         searchEngine.add(product2);
         searchEngine.add(product3);
@@ -104,5 +104,16 @@ public class App {
         } catch (BestResultNotFound e) {
             System.out.println(e.getMessage());
         }
+
+        System.out.println("_______________________________");
+        System.out.println("List");
+        Product product11 = new DiscountedProduct("Молоко", 100, 20);
+        Product product12 = new FixPriceProduct("Молоко");
+        productBasket.addProduct(product11);
+        productBasket.addProduct(product12);
+        System.out.println(productBasket.deleteProduct("Молоко"));
+        System.out.println(productBasket.deleteProduct("Молоко1"));
+        System.out.println("_______________________________");
+        productBasket.getAllProducts();
     }
 }
