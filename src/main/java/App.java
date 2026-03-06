@@ -84,7 +84,7 @@ public class App {
         System.out.println(article1.getStringRepresentation());
         System.out.println(article2.getStringRepresentation());
         System.out.println(article2.getStringRepresentation());
-        System.out.println(Arrays.toString(searchEngine.search("Молоко")));
+        System.out.println(searchEngine.search("Молоко"));
 
         System.out.println("_______________________________");
         System.out.println("Exception");
