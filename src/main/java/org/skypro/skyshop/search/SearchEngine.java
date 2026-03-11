@@ -11,22 +11,6 @@ public class SearchEngine {
 
     private final List<Searchable> searchables = new LinkedList<>();
 
-
-    public Searchable[] search2(String text) {
-        Searchable[] newSearchables = new Searchable[5];
-        int i = 0;
-        for (Searchable s : searchables) {
-            if (s != null && s.getSearchTerm().contains(text)) {
-                newSearchables[i] = s;
-                i++;
-            } else if (i > 6) {
-                break;
-            }
-        }
-
-        return newSearchables;
-    }
-
     public Map<String, Searchable> search(String text) {
         Map<String ,Searchable> map = new TreeMap<>();
         int i = 0;

@@ -7,13 +7,11 @@ import org.skypro.skyshop.product.Product;
 import org.skypro.skyshop.product.SimpleProduct;
 import org.skypro.skyshop.search.SearchEngine;
 
-import java.util.Arrays;
-
 public class App {
 
     public static void main(String[] args) {
         Product product1 = new SimpleProduct("Молоко", 50);
-        Product product2 = new DiscountedProduct("Сметана", 100, 20);
+        Product product2 = new DiscountedProduct("Молоко", 100, 20);
         Product product3 = new FixPriceProduct("Лук");
         Product product4 = new SimpleProduct("Апельсин", 33);
         Product product5 = new DiscountedProduct("Арбуз", 120, 10);
@@ -84,7 +82,7 @@ public class App {
         System.out.println(article1.getStringRepresentation());
         System.out.println(article2.getStringRepresentation());
         System.out.println(article2.getStringRepresentation());
-        System.out.println(searchEngine.search("Молоко"));
+        System.out.println(searchEngine.search("Молоко11"));
 
         System.out.println("_______________________________");
         System.out.println("Exception");
@@ -111,8 +109,8 @@ public class App {
         Product product12 = new FixPriceProduct("Молоко");
         productBasket.addProduct(product11);
         productBasket.addProduct(product12);
-        System.out.println(productBasket.deleteProduct("Молоко"));
-        System.out.println(productBasket.deleteProduct("Молоко1"));
+        System.out.println(productBasket.removeProduct("Молоко"));
+        System.out.println(productBasket.removeProduct("Молоко1"));
         System.out.println("_______________________________");
         productBasket.getAllProducts();
     }

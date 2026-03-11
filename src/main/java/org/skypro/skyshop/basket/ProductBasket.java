@@ -2,34 +2,19 @@ package org.skypro.skyshop.basket;
 
 import org.skypro.skyshop.product.Product;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 public class ProductBasket {
 
-    private final HashMap<String, List<Product>> products = new HashMap<>();
-
-//    public void addProduct(Product product) {
-//        List<Product> productsList = new LinkedList<>();
-//        productsList.add(product);
-//
-//        products.put(product.getName(), productsList);
-//        System.out.println("Добавлен " + product.getName());
-//    }
+    private final Map<String, List<Product>> products = new HashMap<>();
 
     public void addProduct(Product product) {
-        List<Product> productsList = new LinkedList<>();
-        if (products.containsKey(product.getName())) {
-            productsList = products.get(product.getName());
-            productsList.add(product);
-            products.put(product.getName(), productsList);
-        } else {
-            productsList.add(product);
-            products.put(product.getName(), productsList);
-        }
+        products.computeIfAbsent(product.getName(), key -> new LinkedList<>())
+                .add(product);
         System.out.println("Добавлен " + product.getName());
     }
 
@@ -39,7 +24,7 @@ public class ProductBasket {
         for (List<Product> productList : products.values()) {
             for (Product product : productList) {
                 if (product != null) {
-                    sum = sum + product.getPrice();
+                    sum += product.getPrice();
                 }
             }
         }
@@ -78,18 +63,16 @@ public class ProductBasket {
         products.clear();
     }
 
-    public HashMap<String, List<Product>> deleteProduct(String name) {
-        HashMap<String, List<Product>> newHashMap = new HashMap<>();
-
+    public List<Product> removeProduct(String name) {
+        List<Product> newList = new LinkedList<>();
         if (products.containsKey(name)) {
-            List<Product> productList = products.get(name);
-            newHashMap.put(name, productList);
+            newList.addAll(products.get(name));
             products.remove(name);
             System.out.println("Удален продукт: " + name);
         }
-        if (newHashMap.isEmpty()) {
+        if (newList.isEmpty()) {
             System.out.println("Список пуст");
         }
-        return newHashMap;
+        return newList;
     }
 }
