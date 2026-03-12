@@ -50,9 +50,9 @@ public class App {
         System.out.println("_______________________________");
         System.out.println("Interface");
 
-        Article article1 = new Article("Огурцы", "Огурцы надо есть сразу из банки");
+        Article article1 = new Article("Огурцы111111", "Огурцы надо есть сразу из банки");
         Article article2 = new Article("Помидоры", "Выбирай самые красные");
-        Article article3 = new Article("Молоко", "Всегдя кипяти");
+        Article article3 = new Article("Молоко2222222222", "Всегдя кипяти");
 
         SearchEngine searchEngine = new SearchEngine();
         searchEngine.add(product1);
@@ -82,7 +82,7 @@ public class App {
         System.out.println(article1.getStringRepresentation());
         System.out.println(article2.getStringRepresentation());
         System.out.println(article2.getStringRepresentation());
-        System.out.println(searchEngine.search("Молоко11"));
+        System.out.println(searchEngine.search("о"));
 
         System.out.println("_______________________________");
         System.out.println("Exception");
