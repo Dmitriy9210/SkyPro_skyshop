@@ -1,7 +1,5 @@
 package org.skypro.skyshop.search;
 
-import org.skypro.skyshop.article.Article;
-import org.skypro.skyshop.article.ComparatorArticle;
 import org.skypro.skyshop.exception.BestResultNotFound;
 
 import java.util.HashSet;
@@ -12,26 +10,18 @@ public class SearchEngine {
 
     private final Set<Searchable> searchables = new HashSet<>();
 
-    public Set<String> search(String text) {
-        Set<Article> articles = new TreeSet<>(new ComparatorArticle());
-        Set<String> result = new TreeSet<>();
+    public Set<Searchable> search(String text) {
+        Set<Searchable> searchableSet = new TreeSet<>(new ComparatorSearchable());
         int i = 0;
         for (Searchable s : searchables) {
             if (s != null && s.getSearchTerm().contains(text)) {
-                if (s instanceof Article) {
-                    articles.add((Article) s);
-                } else {
-                    result.add(s.getSearchTerm());
-                }
+                searchableSet.add(s);
                 i++;
             } else if (i > 6) {
                 break;
             }
         }
-        for (Article article : articles) {
-            result.add(article.getSearchTerm());
-        }
-        return result;
+        return searchableSet;
     }
 
     public void add(Searchable searchable) {

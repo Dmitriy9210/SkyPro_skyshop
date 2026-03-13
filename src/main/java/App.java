@@ -10,8 +10,8 @@ import org.skypro.skyshop.search.SearchEngine;
 public class App {
 
     public static void main(String[] args) {
-        Product product1 = new SimpleProduct("Молоко", 50);
-        Product product2 = new DiscountedProduct("Молоко", 100, 20);
+        Product product1 = new SimpleProduct("Молоко1", 50);
+        Product product2 = new DiscountedProduct("Молоко2", 100, 20);
         Product product3 = new FixPriceProduct("Лук");
         Product product4 = new SimpleProduct("Апельсин", 33);
         Product product5 = new DiscountedProduct("Арбуз", 120, 10);
