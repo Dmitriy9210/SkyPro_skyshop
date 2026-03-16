@@ -14,11 +14,6 @@ public class ProductBasket {
 
     private final Map<String, List<Product>> products = new HashMap<>();
 
-    //Метод, который возвращает полную стоимость корзины, нужно переписать используя операторы
-    //mapToInt
-    // и
-    //sum
-    //.
     public void addProduct(Product product) {
 
 
