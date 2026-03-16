@@ -10,8 +10,8 @@ import org.skypro.skyshop.search.SearchEngine;
 public class App {
 
     public static void main(String[] args) {
-        Product product1 = new SimpleProduct("Молоко", 50);
-        Product product2 = new DiscountedProduct("Молоко", 100, 20);
+        Product product1 = new SimpleProduct("Молоко1", 50);
+        Product product2 = new DiscountedProduct("Молоко2", 100, 20);
         Product product3 = new FixPriceProduct("Лук");
         Product product4 = new SimpleProduct("Апельсин", 33);
         Product product5 = new DiscountedProduct("Арбуз", 120, 10);
@@ -50,9 +50,9 @@ public class App {
         System.out.println("_______________________________");
         System.out.println("Interface");
 
-        Article article1 = new Article("Огурцы", "Огурцы надо есть сразу из банки");
+        Article article1 = new Article("Огурцы111111", "Огурцы надо есть сразу из банки");
         Article article2 = new Article("Помидоры", "Выбирай самые красные");
-        Article article3 = new Article("Молоко", "Всегдя кипяти");
+        Article article3 = new Article("Молоко2222222222", "Всегдя кипяти");
 
         SearchEngine searchEngine = new SearchEngine();
         searchEngine.add(product1);
@@ -82,7 +82,7 @@ public class App {
         System.out.println(article1.getStringRepresentation());
         System.out.println(article2.getStringRepresentation());
         System.out.println(article2.getStringRepresentation());
-        System.out.println(searchEngine.search("Молоко11"));
+        System.out.println(searchEngine.search("о"));
 
         System.out.println("_______________________________");
         System.out.println("Exception");
