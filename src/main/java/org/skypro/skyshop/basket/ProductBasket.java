@@ -2,56 +2,53 @@ package org.skypro.skyshop.basket;
 
 import org.skypro.skyshop.product.Product;
 
+import java.util.Collection;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.concurrent.atomic.AtomicLong;
 
 public class ProductBasket {
 
     private final Map<String, List<Product>> products = new HashMap<>();
 
+    //Метод, который возвращает полную стоимость корзины, нужно переписать используя операторы
+    //mapToInt
+    // и
+    //sum
+    //.
     public void addProduct(Product product) {
+
+
         products.computeIfAbsent(product.getName(), key -> new LinkedList<>())
                 .add(product);
         System.out.println("Добавлен " + product.getName());
     }
 
     public int getProductPrice() {
-        int sum = 0;
+        return products.values().stream().flatMap(Collection::stream)
+                       .mapToInt(Product::getPrice).sum();
+    }
 
-        for (List<Product> productList : products.values()) {
-            for (Product product : productList) {
-                if (product != null) {
-                    sum += product.getPrice();
-                }
-            }
-        }
-        return sum;
+    private long getSpecialCount(List<Product> product) {
+        return product.stream()
+                      .filter(Objects::nonNull)
+                      .filter(Product::isSpecial)
+                      .peek(System.out::println)
+                      .count();
     }
 
     public void getAllProducts() {
-        int j = 0;
-        int countEspecial = 0;
-        for (List<Product> productList : products.values()) {
-            for (Product product : productList) {
-                if (product != null) {
-                    if (product.isSpecial()) {
-                        countEspecial++;
-                    }
-                    System.out.println(product);
-                    j++;
-                } else if (j == 0) {
-                    System.out.println("в корзине пусто");
-                    break;
-                }
-            }
-        }
+        AtomicLong countEspecial = new AtomicLong();
+        products.values().forEach(productList ->
+                                          countEspecial.addAndGet(getSpecialCount(productList)));
+        System.out.println("Специальных товаров: " + countEspecial.get());
+
         int sum = getProductPrice();
         if (sum > 0) {
             System.out.println("Итого: " + sum);
-            System.out.println("Специальных товаров: " + countEspecial);
         }
     }
 
