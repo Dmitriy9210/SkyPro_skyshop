@@ -8,7 +8,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.concurrent.atomic.AtomicLong;
 
 public class ProductBasket {
 
@@ -27,19 +26,22 @@ public class ProductBasket {
                        .mapToInt(Product::getPrice).sum();
     }
 
-    private long getSpecialCount(List<Product> product) {
-        return product.stream()
-                      .filter(Objects::nonNull)
-                      .filter(Product::isSpecial)
-                      .peek(System.out::println)
-                      .count();
+    private void getSpecialCount() {
+        long count = products.values().stream()
+                             .flatMap(Collection::stream)
+                             .filter(Objects::nonNull)
+                             .filter(Product::isSpecial)
+                             .count();
+        System.out.println("Специальных товаров: " + count);
     }
 
     public void getAllProducts() {
-        AtomicLong countEspecial = new AtomicLong();
-        products.values().forEach(productList ->
-                                          countEspecial.addAndGet(getSpecialCount(productList)));
-        System.out.println("Специальных товаров: " + countEspecial.get());
+        getSpecialCount();
+        products.values().stream()
+                .flatMap(Collection::stream)
+                .filter(Objects::nonNull)
+                .filter(Product::isSpecial)
+                .forEach(System.out::println);
 
         int sum = getProductPrice();
         if (sum > 0) {
