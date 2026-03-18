@@ -26,13 +26,14 @@ public class ProductBasket {
                        .mapToInt(Product::getPrice).sum();
     }
 
-    private void getSpecialCount() {
+    private long getSpecialCount() {
         long count = products.values().stream()
                              .flatMap(Collection::stream)
                              .filter(Objects::nonNull)
                              .filter(Product::isSpecial)
                              .count();
         System.out.println("Специальных товаров: " + count);
+        return count;
     }
 
     public void getAllProducts() {
