@@ -2,56 +2,51 @@ package org.skypro.skyshop.basket;
 
 import org.skypro.skyshop.product.Product;
 
+import java.util.Collection;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class ProductBasket {
 
     private final Map<String, List<Product>> products = new HashMap<>();
 
     public void addProduct(Product product) {
+
+
         products.computeIfAbsent(product.getName(), key -> new LinkedList<>())
                 .add(product);
         System.out.println("Добавлен " + product.getName());
     }
 
     public int getProductPrice() {
-        int sum = 0;
+        return products.values().stream().flatMap(Collection::stream)
+                       .mapToInt(Product::getPrice).sum();
+    }
 
-        for (List<Product> productList : products.values()) {
-            for (Product product : productList) {
-                if (product != null) {
-                    sum += product.getPrice();
-                }
-            }
-        }
-        return sum;
+    private long getSpecialCount() {
+        long count = products.values().stream()
+                             .flatMap(Collection::stream)
+                             .filter(Objects::nonNull)
+                             .filter(Product::isSpecial)
+                             .count();
+        System.out.println("Специальных товаров: " + count);
+        return count;
     }
 
     public void getAllProducts() {
-        int j = 0;
-        int countEspecial = 0;
-        for (List<Product> productList : products.values()) {
-            for (Product product : productList) {
-                if (product != null) {
-                    if (product.isSpecial()) {
-                        countEspecial++;
-                    }
-                    System.out.println(product);
-                    j++;
-                } else if (j == 0) {
-                    System.out.println("в корзине пусто");
-                    break;
-                }
-            }
-        }
+        getSpecialCount();
+        products.values().stream()
+                .flatMap(Collection::stream)
+                .filter(Objects::nonNull)
+                .filter(Product::isSpecial)
+                .forEach(System.out::println);
+
         int sum = getProductPrice();
         if (sum > 0) {
             System.out.println("Итого: " + sum);
-            System.out.println("Специальных товаров: " + countEspecial);
         }
     }
 
